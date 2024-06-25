@@ -12,12 +12,16 @@ const cardImages = [
 ]
 
 function App() {
-  const [cards, setCards] = useState([])
-  const [turns, setTurns] = useState(0)
-  const [choiceOne, setChoiceOne] = useState(null)
-  const [choiceTwo, setChoiceTwo] = useState(null)
-  const [disabled, setDisabled] = useState(false)
+  const [cards, setCards] = useState([])// to store the shuffled cards
+  const [turns, setTurns] = useState(0)//to store the number of turns
+  const [choiceOne, setChoiceOne] = useState(null)// to store the card that is clicked first
+  const [choiceTwo, setChoiceTwo] = useState(null)// to store the card that is clicked second
+  const [disabled, setDisabled] = useState(false)// to control the the mouseClick on the card
 
+  // start new game automagically
+  useEffect(() => {
+    shuffleCards()
+  }, [])
   // shuffle cards for new game
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages]
@@ -30,27 +34,17 @@ function App() {
     setTurns(0)
   }
 
-  // handle a choice
-  const handleChoice = (card) => {
-    console.log(card)
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
-  }
+  // to store the choice in choiceOne and choiceTwo
+  const handleChoice = (card) => {choiceOne ? setChoiceTwo(card) : setChoiceOne(card)};
+  
 
-  // compare 2 selected cards
+  //mark the matched choice to be displayed or reset the turn
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true)
 
       if (choiceOne.src === choiceTwo.src) {
-        setCards(prevCards => {
-          return prevCards.map(card => {
-            if (card.src === choiceOne.src) {
-              return { ...card, matched: true }
-            } else {
-              return card
-            }
-          })
-        })
+        setCards(prevCards =>  prevCards.map(card => (card.src=== choiceOne.src) ? {...card,matched:true} : card))
         resetTurn()
       } else {
         setTimeout(() => resetTurn(), 1000)
@@ -67,10 +61,19 @@ function App() {
     setDisabled(false)
   }
 
-  // start new game automagically
-  useEffect(() => {
-    shuffleCards()
-  }, [])
+  
+
+  //to store all the card elments that is to be stored
+  const cardElements= cards.map(card => 
+    <SingleCard 
+      key={card.id}
+      card={card}
+      handleChoice={handleChoice}
+      flipped={card === choiceOne || card === choiceTwo || card.matched}// card is displayed only when it flipped is true
+      disabled={disabled}//card can only be clicked when disabled is false
+    />
+  )
+
 
   return (
     <div className="App">
@@ -78,15 +81,7 @@ function App() {
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
-        {cards.map(card => (
-          <SingleCard 
-            key={card.id}
-            card={card}
-            handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
-            disabled={disabled}
-          />
-        ))}
+        {cardElements}
       </div>
 
       <p>Turns: {turns}</p>

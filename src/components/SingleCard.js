@@ -1,7 +1,7 @@
 import './SingleCard.css'
 
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
-
+  // to decide the whether the card can be clicked or not
   const handleClick = () => {
     if (!disabled) {
       handleChoice(card)
