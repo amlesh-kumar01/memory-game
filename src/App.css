@@ -1,6 +1,8 @@
 .App {
-  max-width: 860px;
-  margin: 40px auto;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 button {
   background: none;
@@ -13,12 +15,23 @@ button {
   font-size: 1em;
 }
 button:hover {
-  background: #c23866;
+  background: grey;
   color: #fff;
 }
 .card-grid {
   margin-top: 40px;
   display: grid;
+  width: 50%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 5px;
+}
+@media (max-width:800px){
+  .card-grid{
+    width:90%;
+  }
+}
+@media (max-width:1200px){
+  .card-grid{
+    width:70%
+  }
 }

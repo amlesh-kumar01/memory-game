@@ -8,7 +8,18 @@
   border-radius: 6px;
 }
 
-/* front of card - the picture */
+
+/* for cover of the card */
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.05s;
+}
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+/* for images of the card */
 .card .front {
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
@@ -16,15 +27,5 @@
 }
 .flipped .front {
   transform: rotateY(0deg);
-  transition-delay: 0.2s;
-}
-
-/* back of card - cover */
-.card .back {
-  transition: all ease-in 0.2s;
-  transition-delay: 0.2s;
-}
-.flipped .back {
-  transform: rotateY(90deg);
-  transition-delay: 0s;
+  transition-delay: 0.05s;
 }
