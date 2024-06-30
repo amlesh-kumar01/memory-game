@@ -1,13 +1,19 @@
 .Game{
   display:grid;
+  max-width: 600px;
   grid-template-columns: 0.1fr 0.8fr 0.1fr;
   grid-template-rows: 0.1fr 0.1fr 0.8fr 0.1fr;
   place-items:center;
+  border: 2px solid pink;
+  border-radius: 10px;
+  padding:10px;
+  box-shadow: 4px 4px 4px 4px rgba(59, 46, 75, 0.407) ;
 }
 
 .game-heading{
   grid-column: 2/3;
   margin:10px 0 10px 0;
+  color:red;
 }
 
 
@@ -21,20 +27,20 @@
 }
 .game-control button {
     background: none;
-    border: 2px solid #fff;
+    border: 2px solid red;
     padding: 3px 6px;
     border-radius: 4px;
-    color: #fff;
+    color: yellowgreen;
     font-weight: bold;
     cursor: pointer;
     font-size: 1em;
 }
 .game-control button:hover{
-  background: grey;
-    color: #fff;
+  background: rgb(24, 24, 62);
 }
 .game-control p{
   font-weight: bold;
+  color: yellowgreen;
 }
 
 
@@ -43,19 +49,36 @@
     margin: 40px 0 40px 0 px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
+    gap:5px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color:rgba(45, 31, 78, 0.962);
   }
 
   .go-back{
     grid-column: 2/3;
     background: none;
-    border: 2px solid #fff;
+    border: 2px solid red;
     padding: 3px 6px;
     border-radius: 4px;
-    color: #fff;
+    color: yellowgreen;
     font-weight: bold;
     cursor: pointer;
     font-size: 1em;
     margin:10px 0 0 0;
     text-decoration: none;
   }
+  .go-back:hover{
+    background-color: rgb(28, 28, 76);
+  }
+  @media (max-width:800px){
+    .Game{
+      border:none;
+      box-shadow: none;
+    }
+    .card-grid{
+      gap:3px;
+    }
+  }
+  
