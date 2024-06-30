@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  border: 2px solid red;
+  border: 2px solid white;
   border-radius: 2px;
 }
 .card img {
